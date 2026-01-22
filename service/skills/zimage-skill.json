@@ -3,7 +3,7 @@
   "description": "Generate images using Z-Image-Turbo AI model",
   "version": "1.0.0",
   "endpoint": {
-    "url": "http://localhost:8000/api/generate",
+    "url": "http://localhost:8080/api/generate",
     "method": "GET"
   },
   "parameters": {

@@ -16,7 +16,7 @@ cp .env.example .env
 python run.py
 ```
 
-The web UI will be available at http://localhost:8000
+The web UI will be available at http://localhost:8080
 
 ## API Endpoints
 
@@ -38,47 +38,47 @@ The web UI will be available at http://localhost:8000
 
 ```bash
 # Basic generation
-curl "http://localhost:8000/api/generate?prompt=A%20beautiful%20sunset" -o sunset.png
+curl "http://localhost:8080/api/generate?prompt=A%20beautiful%20sunset" -o sunset.png
 
 # With custom dimensions
-curl "http://localhost:8000/api/generate?prompt=Mountain%20landscape&width=1024&height=1024" -o landscape.png
+curl "http://localhost:8080/api/generate?prompt=Mountain%20landscape&width=1024&height=1024" -o landscape.png
 
 # With specific seed for reproducibility
-curl "http://localhost:8000/api/generate?prompt=Futuristic%20city&seed=12345" -o city.png
+curl "http://localhost:8080/api/generate?prompt=Futuristic%20city&seed=12345" -o city.png
 
 # Without saving to gallery
-curl "http://localhost:8000/api/generate?prompt=Quick%20test&save=false" -o test.png
+curl "http://localhost:8080/api/generate?prompt=Quick%20test&save=false" -o test.png
 ```
 
 ### Task-based API (with WebSocket progress)
 
 ```bash
 # Start generation task
-curl -X POST "http://localhost:8000/generate" \
+curl -X POST "http://localhost:8080/generate" \
   -H "Content-Type: application/json" \
   -d '{"prompt": "A serene forest", "width": 2048, "height": 2048}'
 
 # Response: {"task_id": "uuid-here", "status": "pending"}
-# Then connect to WebSocket: ws://localhost:8000/ws/progress/{task_id}
+# Then connect to WebSocket: ws://localhost:8080/ws/progress/{task_id}
 ```
 
 ### Image Management
 
 ```bash
 # List recent images
-curl "http://localhost:8000/images?limit=10&offset=0"
+curl "http://localhost:8080/images?limit=10&offset=0"
 
 # Get image file
-curl "http://localhost:8000/images/{id}" -o image.png
+curl "http://localhost:8080/images/{id}" -o image.png
 
 # Get image metadata
-curl "http://localhost:8000/images/{id}/metadata"
+curl "http://localhost:8080/images/{id}/metadata"
 ```
 
 ### Health Check
 
 ```bash
-curl "http://localhost:8000/health"
+curl "http://localhost:8080/health"
 # {"status": "healthy", "pipeline_ready": true}
 ```
 
@@ -89,7 +89,7 @@ Environment variables (see `.env.example`):
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `ZIMAGE_HOST` | `0.0.0.0` | Server bind address |
-| `ZIMAGE_PORT` | `8000` | Server port |
+| `ZIMAGE_PORT` | `8080` | Server port |
 | `ZIMAGE_MODEL_PATH` | `Tongyi-MAI/Z-Image-Turbo` | Model path or HF repo |
 | `ZIMAGE_CPU_OFFLOAD` | `true` | Enable CPU offloading |
 | `ZIMAGE_DEFAULT_WIDTH` | `2048` | Default image width |
@@ -114,7 +114,7 @@ Claude can call the `/api/generate` endpoint directly to create images.
 
 ```bash
 # Run with auto-reload (development)
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8080
 
 # Note: Pipeline is not preloaded in reload mode, first request will be slow
 ```

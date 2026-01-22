@@ -9,7 +9,7 @@ load_dotenv()
 
 # Server settings
 HOST = os.getenv("ZIMAGE_HOST", "0.0.0.0")
-PORT = int(os.getenv("ZIMAGE_PORT", "8000"))
+PORT = int(os.getenv("ZIMAGE_PORT", "8080"))
 
 # Model settings
 MODEL_PATH = os.getenv("ZIMAGE_MODEL_PATH", "Tongyi-MAI/Z-Image-Turbo")
