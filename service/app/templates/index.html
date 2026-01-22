@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Image Generator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Z-Image Generator</h1>
+            <p class="subtitle">AI-powered image generation</p>
+        </header>
+
+        <main>
+            <section class="generator">
+                <form id="generate-form">
+                    <div class="form-group">
+                        <label for="prompt">Prompt</label>
+                        <textarea
+                            id="prompt"
+                            name="prompt"
+                            rows="3"
+                            placeholder="Describe the image you want to generate..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="width">Width</label>
+                            <input type="number" id="width" name="width" value="2048" min="512" max="2048" step="64">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height</label>
+                            <input type="number" id="height" name="height" value="2048" min="512" max="2048" step="64">
+                        </div>
+                        <div class="form-group">
+                            <label for="seed">Seed (optional)</label>
+                            <input type="number" id="seed" name="seed" placeholder="Random">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="generate-btn">
+                        <span class="btn-text">Generate</span>
+                        <span class="btn-loading" hidden>Generating...</span>
+                    </button>
+                </form>
+
+                <div id="progress-container" hidden>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p class="progress-text" id="progress-text">Starting...</p>
+                </div>
+
+                <div id="result-container" hidden>
+                    <div class="result-image">
+                        <img id="result-image" src="" alt="Generated image">
+                    </div>
+                    <div class="result-info">
+                        <p><strong>Seed:</strong> <span id="result-seed"></span></p>
+                        <a id="download-link" href="" download="generated.png" class="download-btn">Download</a>
+                    </div>
+                </div>
+
+                <div id="error-container" hidden>
+                    <p class="error-message" id="error-message"></p>
+                </div>
+            </section>
+
+            <section class="gallery">
+                <h2>Recent Generations</h2>
+                <div id="gallery-grid" class="gallery-grid"></div>
+                <button id="load-more" class="load-more-btn" hidden>Load More</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by Z-Image-Turbo</p>
+        </footer>
+    </div>
+
+    <div id="modal" class="modal" hidden>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <img id="modal-image" src="" alt="Full size image">
+            <div class="modal-info">
+                <p class="modal-prompt" id="modal-prompt"></p>
+                <p class="modal-meta" id="modal-meta"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

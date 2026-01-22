@@ -215,3 +215,5 @@ ckpts/
 
 # Ignore generated images
 /*.png
+service/data/images.db
+service/images

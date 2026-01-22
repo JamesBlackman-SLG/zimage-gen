@@ -1,0 +1,61 @@
+{
+  "name": "zimage",
+  "description": "Generate images using Z-Image-Turbo AI model",
+  "version": "1.0.0",
+  "endpoint": {
+    "url": "http://localhost:8000/api/generate",
+    "method": "GET"
+  },
+  "parameters": {
+    "prompt": {
+      "type": "string",
+      "required": true,
+      "description": "Text description of the image to generate",
+      "maxLength": 2000
+    },
+    "width": {
+      "type": "integer",
+      "required": false,
+      "default": 2048,
+      "minimum": 512,
+      "maximum": 2048,
+      "description": "Image width in pixels"
+    },
+    "height": {
+      "type": "integer",
+      "required": false,
+      "default": 2048,
+      "minimum": 512,
+      "maximum": 2048,
+      "description": "Image height in pixels"
+    },
+    "seed": {
+      "type": "integer",
+      "required": false,
+      "description": "Random seed for reproducible results"
+    },
+    "save": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Save image to gallery"
+    }
+  },
+  "response": {
+    "contentType": "image/png",
+    "headers": {
+      "X-Seed": "The seed used for generation",
+      "X-Prompt": "The prompt (truncated to 100 chars)"
+    }
+  },
+  "examples": [
+    {
+      "description": "Generate a landscape image",
+      "request": "?prompt=A%20serene%20mountain%20landscape%20at%20sunset&width=2048&height=1024"
+    },
+    {
+      "description": "Generate with specific seed",
+      "request": "?prompt=A%20futuristic%20city&seed=12345"
+    }
+  ]
+}
